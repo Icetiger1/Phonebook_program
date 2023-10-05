@@ -1,0 +1,28 @@
+﻿@model IEnumerable<MvcApp.Models.Contact>
+
+<h2>Список контактов</h2>
+<p><a asp-action="Create">Добавить контакт</a></p>
+<table class="table">
+    <tr><th>ID</th><th>Имя</th><th>Фамилия</th><th>Возраст</th><th>Почта</th><th>Телефон</th><th>Адрес</th><th>Город</th><th>Регион</th><th>Индекс</th><th>Страна</th></tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Name</td>
+            <td>@item.Surname</td>
+            <td>@item.Age</td>
+            <td>@item.Email</td>
+            <td>@item.PhoneNumber</td>
+            <td>@item.Address</td>
+            <td>@item.City</td>
+            <td>@item.Region</td>
+            <td>@item.PostalCode</td>
+            <td>@item.Country</td>
+            <td>
+                <form asp-controller="Contact" asp-action="Delete" method="post" asp-route-id="@item.Id">
+                    <input type="submit" value="Удалить" />
+                </form>
+            </td>
+        </tr>
+    }
+</table>

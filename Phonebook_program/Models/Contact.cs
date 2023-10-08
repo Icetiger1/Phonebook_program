@@ -15,10 +15,10 @@ namespace Phonebook_program.Models
         public string? Address { get; set; }
         public string? City { get; set; } = null;
         public string? Region { get; set; }
-        public string? PostalCode { get; set; } = string.Empty;
+        public int? PostalCode { get; set; } 
         public string? Country { get; set; }
 
-        public List<Contact> Contacts { get; set; } = new();
+        //public List<Contact> Contacts { get; set; } = new();
 
         /*public Contact(int id, string name, string surname, int age, string email, string phoneNumber, string address, string city, string region, string postalCode, string country)
         {

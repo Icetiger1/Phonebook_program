@@ -1,23 +1,31 @@
-﻿@model IEnumerable<Phonebook_program.Models.Contact>
+﻿@model Phonebook_program.Models.ContactListViewModel;
 
 <h2>Список контактов</h2>
-<p><a asp-action="Create">Добавить контакт</a></p>
+<hr />
+
+
+@if (Model.Contacts.Count == 0)
+{
+    <p>Контакты отсутствуют</p>
+}
+<div class="row">
+    <div class="mb-4 text-center">
+        <button class="btn btn-dark" asp-controller="Contact" asp-action="Add">Добавить контакт</button>
+        <p><a asp-controller="Contact" asp-action="Add">Добавить контакт</a></p>
+
+    </div>
+</div>
 <table class="table">
-    <tr><th>ID</th><th>Имя</th><th>Фамилия</th><th>Возраст</th><th>Почта</th><th>Телефон</th><th>Адрес</th><th>Город</th><th>Регион</th><th>Индекс</th><th>Страна</th></tr>
-    @foreach (var item in Model)
+    <thead class="thead-light">
+        <tr class=""><th>Имя</th><th>Фамилия</th><th>Телефон</th></tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Contacts)
     {
         <tr>
-            <td>@item.Id</td>
             <td>@item.Name</td>
             <td>@item.Surname</td>
-            <td>@item.Age</td>
-            <td>@item.Email</td>
             <td>@item.PhoneNumber</td>
-            <td>@item.Address</td>
-            <td>@item.City</td>
-            <td>@item.Region</td>
-            <td>@item.PostalCode</td>
-            <td>@item.Country</td>
             <td>
                 <form asp-controller="Contact" asp-action="Delete" method="post" asp-route-id="@item.Id">
                     <input type="submit" value="Удалить" />
@@ -25,4 +33,5 @@
             </td>
         </tr>
     }
+    </tbody>
 </table>

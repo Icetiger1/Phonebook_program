@@ -9,7 +9,11 @@ namespace Phonebook_program.Controllers
     {
         private readonly ApplicationDbContext db;
         [BindProperty]
-        public Contact? Contact { get; set; } 
+        public Contact? contact { get; set; }
+
+        //public ContactsList? Contacts { get; set; }
+
+        public List<Contact>? ContactList { get; set; }
 
         public ContactController(ApplicationDbContext db)
         {
@@ -19,67 +23,34 @@ namespace Phonebook_program.Controllers
         // GET: ContactController
         public ActionResult Index()
         {
+            ContactListViewModel model = new ContactListViewModel
+            {
+                Contacts = ContactsList.GetAll()
+            };
+
+            return View(model);
+        }
+
+        public IActionResult Add()
+        {
             return View();
         }
 
-        // GET: ContactController/Details/5
-        public ActionResult Details(int id)
+        [HttpPost]
+        [Route("/Contast/Add")]
+        public IActionResult NewContact(int id, string name, string surname, int age, string email, string phoneNumber, string address, string city, string region, int postalCode, string country)
         {
+            // Add the new cheese to my existing cheeses
+            ContactsList.Add(new Contact(id, name, surname, age, email, phoneNumber, address, city, region, postalCode, country));
+
+            return Redirect("/");
+        }
+
+        public IActionResult Details(int id)
+        {
+            ViewBag.contact = ContactsList.GetById(id);
+            ViewBag.title = "Contact Detail";
             return View();
-        }
-
-        // POST: ContactController/CreateorUpdate
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Contact contact)
-        {
-            if (ModelState.IsValid)
-            {
-                if (contact.Id == 0)
-                {
-                    //Create
-                    db.Contacts.Add(contact);
-                }
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-
-            return View(contact);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Contact contact)
-        {
-            if (ModelState.IsValid)
-            {
-                if (contact.Id != 0)
-                {
-                    db.Contacts.Update(contact);
-                }
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-
-            return View(contact);
-        }
-
-        // POST: ContactController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Delete(int? id)
-        {
-            if (id != null)
-            {
-                Contact = await db.Contacts.FirstOrDefaultAsync(p => p.Id == id);
-                if (Contact != null)
-                {
-                    db.Contacts.Remove(Contact);
-                    await db.SaveChangesAsync();
-                    return RedirectToAction("Index");
-                }
-            }
-            return NotFound();
         }
     }
 }

@@ -1,2 +1,2 @@
 # Phonebook_program
-Мой проект по изучению ASP.Net Core и Entity Framework Core
+Мой проект по изучению ASP.Net Core MVC и Entity Framework Core

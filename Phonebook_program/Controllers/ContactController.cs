@@ -7,28 +7,22 @@ namespace Phonebook_program.Controllers
 {
     public class ContactController : Controller
     {
-        private readonly ApplicationDbContext db;
-        [BindProperty]
-        public Contact? contact { get; set; }
 
-        //public ContactsList? Contacts { get; set; }
+        public List<Contact> Contacts { get; set; } = new();
 
-        public List<Contact>? ContactList { get; set; }
+        ApplicationDbContext context;
 
-        public ContactController(ApplicationDbContext db)
+        public ContactController(ApplicationDbContext context)
         {
-            this.db = db;
+            this.context = context;
         }
 
         // GET: ContactController
         public ActionResult Index()
         {
-            ContactListViewModel model = new ContactListViewModel
-            {
-                Contacts = ContactsList.GetAll()
-            };
-
-            return View(model);
+            Contacts = context.Contacts.ToList();
+            ViewBag.contacts = Contacts;
+            return View();
         }
 
         public IActionResult Add()
@@ -40,15 +34,14 @@ namespace Phonebook_program.Controllers
         [Route("/Contast/Add")]
         public IActionResult NewContact(int id, string name, string surname, int age, string email, string phoneNumber, string address, string city, string region, int postalCode, string country)
         {
-            // Add the new cheese to my existing cheeses
-            ContactsList.Add(new Contact(id, name, surname, age, email, phoneNumber, address, city, region, postalCode, country));
-
-            return Redirect("/");
+            Contact con = new Contact(id, name, surname, age, email, phoneNumber, address, city, region, postalCode, country);
+            context.Contacts.Add(con);
+            context.SaveChanges();
+            return View("Index");
         }
 
         public IActionResult Details(int id)
         {
-            ViewBag.contact = ContactsList.GetById(id);
             ViewBag.title = "Contact Detail";
             return View();
         }

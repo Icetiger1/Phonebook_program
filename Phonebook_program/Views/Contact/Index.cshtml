@@ -1,26 +1,24 @@
-﻿@model Phonebook_program.Models.ContactListViewModel;
+﻿@{
+
+}
 
 <h2>Список контактов</h2>
 <hr />
 
-
-@if (Model.Contacts.Count == 0)
-{
-    <p>Контакты отсутствуют</p>
-}
 <div class="row">
-    <div class="mb-4 text-center">
-        <button class="btn btn-dark" asp-controller="Contact" asp-action="Add">Добавить контакт</button>
-        <p><a asp-controller="Contact" asp-action="Add">Добавить контакт</a></p>
+    <div class="ext-left">
+        <form asp-controller="Contact" asp-action="Add">
+            <input type="submit" value="Добавить контакт" />
+        </form>
 
     </div>
 </div>
 <table class="table">
     <thead class="thead-light">
-        <tr class=""><th>Имя</th><th>Фамилия</th><th>Телефон</th></tr>
+        <tr class=""><th>Имя</th><th>Фамилия</th><th>Телефон</th><th>Действия</th></tr>
     </thead>
     <tbody>
-    @foreach (var item in Model.Contacts)
+        @foreach (var item in ViewBag.contacts)
     {
         <tr>
             <td>@item.Name</td>

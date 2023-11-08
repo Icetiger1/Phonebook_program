@@ -8,68 +8,68 @@
             <div class="col-md-3 text-center">
                 <p>
                     <label asp-for="Name">Имя</label><br />
-                    <input type="text" asp-for="Name" />
+                    <input type="text" asp-for="@Model.Name" />
                 </p>
             </div>
             <div class="col-md-3  text-center">
                 <p>
                     <label asp-for="Surname">Фамилия</label><br />
-                    <input type="text" asp-for="Surname" />
+                    <input type="text" asp-for="@Model.Surname" />
                 </p>
             </div>
             <div class="col-md-3  text-center">
                 <p>
                     <label asp-for="Age">Возраст</label><br />
-                    <input type="number" asp-for="Age" />
+                    <input type="number" asp-for="@Model.Age" />
                 </p>
             </div>
             <div class="col-md-3  text-center">
                 <p>
                     <label asp-for="Email">Почта</label><br />
-                    <input type="text" asp-for="Email" />
+                    <input type="text" asp-for="@Model.Email" />
                 </p>
             </div>
             <div class="col-md-3  text-center">
                 <p>
                     <label asp-for="PhoneNumber">Телефон</label><br />
-                    <input type="text" asp-for="PhoneNumber" />
+                    <input type="text" asp-for="@Model.PhoneNumber" />
                 </p>
             </div>
             <div class="col-md-3  text-center">
                 <p>
                     <label asp-for="Address">Адрес</label><br />
-                    <input type="text" asp-for="Address" />
+                    <input type="text" asp-for="@Model.Address" />
                 </p>
             </div>
             <div class="col-md-3  text-center">
                 <p>
                     <label asp-for="City">Город</label><br />
-                    <input type="text" asp-for="City" />
+                    <input type="text" asp-for="@Model.City" />
                 </p>
             </div>
             <div class="col-md-3  text-center">
                 <p>
                     <label asp-for="Region">регион</label><br />
-                    <input type="text" asp-for="Region" />
+                    <input type="text" asp-for="@Model.Region" />
                 </p>
             </div>
             <div class="col-md-3  text-center">
                 <p>
                     <label asp-for="PostalCode">Индекс</label><br />
-                    <input type="text" asp-for="PostalCode" />
+                    <input type="text" asp-for="@Model.PostalCode" />
                 </p>
             </div>
             <div class="col-md-3  text-center">
                 <p>
                     <label asp-for="Country">Страна</label><br />
-                    <input type="text" asp-for="Country" />
+                    <input type="text" asp-for="@Model.Country" />
                 </p>
             </div>
         </div> 
         <hr />
         <div class="row col-md-12 text-center">
             <p>
-                <input type="submit" value="Добавить контакт" />
+                <input asp-controller="contact" asp-action="AddContact" type="submit" value="Добавить контакт" />
             </p>
         </div>
     </div>

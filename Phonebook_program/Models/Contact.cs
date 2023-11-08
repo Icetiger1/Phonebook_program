@@ -23,20 +23,20 @@ namespace Phonebook_program.Models
 
         }
 
-        public Contact(int id, string name, string surname, int age, string email, string phoneNumber, string address, string city, string region, int postalCode, string country) 
-        {
-            this.Id = id;
-            this.Name = name;
-            this.Surname = surname;
-            this.Age = age;
-            this.Email = email;
-            this.PhoneNumber = phoneNumber;
-            this.Address = address;
-            this.City = city;
-            this.Region = region;
-            this.PostalCode = postalCode;
-            this.Country = country;
-        }
+        //public Contact(int id, string name, string surname, int age, string email, string phoneNumber, string address, string city, string region, int postalCode, string country) 
+        //{
+        //    this.Id = id;
+        //    this.Name = name;
+        //    this.Surname = surname;
+        //    this.Age = age;
+        //    this.Email = email;
+        //    this.PhoneNumber = phoneNumber;
+        //    this.Address = address;
+        //    this.City = city;
+        //    this.Region = region;
+        //    this.PostalCode = postalCode;
+        //    this.Country = country;
+        //}
 
     }
 }

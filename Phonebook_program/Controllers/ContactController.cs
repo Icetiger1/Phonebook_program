@@ -17,12 +17,13 @@ namespace Phonebook_program.Controllers
             this.context = context;
         }
 
-        // GET: ContactController
+        [HttpGet]
         public ActionResult Index()
         {
+            List<Contact> Contacts = new();
             Contacts = context.Contacts.ToList();
-            ViewBag.contacts = Contacts;
-            return View();
+            ViewBag.Data = Contacts;
+            return View(Contacts);
         }
 
         public IActionResult Add()
@@ -31,10 +32,8 @@ namespace Phonebook_program.Controllers
         }
 
         [HttpPost]
-        [Route("/Contast/Add")]
-        public IActionResult NewContact(int id, string name, string surname, int age, string email, string phoneNumber, string address, string city, string region, int postalCode, string country)
+        public IActionResult AddContact(Contact con)
         {
-            Contact con = new Contact(id, name, surname, age, email, phoneNumber, address, city, region, postalCode, country);
             context.Contacts.Add(con);
             context.SaveChanges();
             return View("Index");

@@ -29,10 +29,10 @@
                 <td asp-for="PhoneNumber">@item.PhoneNumber</td>
             <td>
                     <form asp-controller="Contact" asp-action="Delete" method="post" asp-route-id="@item.Id">
-                        <span class="ti-brush-alt"><input type="submit" src="" value="" /></span>
+                        <input type="submit" value="Delete">
                     </form>
-                    <form asp-controller="Contact" asp-action="Edit" method="post" asp-route-id="@item.Id">
-                        <span class="ti-pencil-alt"><input type="submit" value="" /></span>
+                    <form asp-controller="Contact" asp-action="Edit" asp-route-id="@item.Id">
+                        <input type="submit" value="Edit">
                     </form>
             </td>
         </tr>

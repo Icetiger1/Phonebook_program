@@ -65,7 +65,7 @@ namespace Phonebook_program.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(Contact contact)
+        public async Task<IActionResult> EditContact(Contact contact)
         {
             context.Contacts.Update(contact);
             await context.SaveChangesAsync();

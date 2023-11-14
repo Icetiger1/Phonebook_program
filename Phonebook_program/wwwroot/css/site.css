@@ -16,3 +16,23 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.btn {
+    background-color: lightgrey;
+    padding: 22px 22px;
+    font-size: 18px;
+}
+
+.feature-icon1 {
+    display: inline-block;
+    height: 18px;
+    width: 18px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 18px;
+    line-height: 20px;
+    background: #3498db;
+    box-shadow: 0px 18px 25px 0px rgba(0, 141, 236, 0.1);
+    text-align: center;
+    transition: .2s ease;
+}

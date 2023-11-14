@@ -18,11 +18,6 @@ namespace Phonebook_program.Models
         public int? PostalCode { get; set; } 
         public string? Country { get; set; }
 
-        public Contact()
-        {
-
-        }
-
         //public Contact(int id, string name, string surname, int age, string email, string phoneNumber, string address, string city, string region, int postalCode, string country) 
         //{
         //    this.Id = id;

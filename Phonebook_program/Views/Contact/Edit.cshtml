@@ -1,46 +1,46 @@
 ﻿@model Phonebook_program.Models.Contact
 
 <h2>Редактирование пользователя</h2>
-<form asp-action="edit" asp-controller="contact" asp-route-id="@Model.Id">
+<form asp-action="EditContact" method="post" asp-controller="contact" asp-route-id="@Model.Id">
     <p>
         <label asp-for="Name">Имя</label><br />
-        <input type="text" asp-for="Name" />
+        <input type="text" asp-for="Name" value="@Model.Name" />
     </p>
     <p>
         <label asp-for="Surname">Фамилия</label><br />
-        <input type="text" asp-for="Surname" />
+        <input type="text" asp-for="Surname" value="@Model.Surname" />
     </p>
     <p>
         <label asp-for="Age">Возраст</label><br />
-        <input type="number" asp-for="Age" />
+        <input type="number" asp-for="Age" value="@Model.Age" />
     </p>
     <p>
         <label asp-for="Email">Почта</label><br />
-        <input type="text" asp-for="Email" />
+        <input type="text" asp-for="Email" value="@Model.Email" />
     </p>
     <p>
         <label asp-for="PhoneNumber">Телефон</label><br />
-        <input type="text" asp-for="PhoneNumber" />
+        <input type="text" asp-for="PhoneNumber" value="@Model.PhoneNumber" />
     </p>
     <p>
         <label asp-for="Address">Адрес</label><br />
-        <input type="text" asp-for="Address" />
+        <input type="text" asp-for="Address" value="@Model.Address" />
     </p>
     <p>
         <label asp-for="City">Город</label><br />
-        <input type="text" asp-for="City" />
+        <input type="text" asp-for="City" value="@Model.City" />
     </p>
     <p>
         <label asp-for="Region">регион</label><br />
-        <input type="text" asp-for="Region" />
+        <input type="text" asp-for="Region" value="@Model.Region" />
     </p>
     <p>
         <label asp-for="PostalCode">Индекс</label><br />
-        <input type="text" asp-for="PostalCode" />
+        <input type="text" asp-for="PostalCode" value="@Model.PostalCode" />
     </p>
     <p>
         <label asp-for="Country">Страна</label><br />
-        <input type="text" asp-for="Country" />
+        <input type="text" asp-for="Country" value="@Model.Country" />
     </p>
     <p>
         <input type="submit" value="Сохранить" />

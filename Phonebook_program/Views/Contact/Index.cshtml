@@ -1,4 +1,5 @@
-﻿@using Phonebook_program.Controllers
+﻿@model Phonebook_program.Models.ContactViewModel
+@using Phonebook_program.Controllers
 
 @{
 
@@ -20,16 +21,19 @@
         <tr class=""><th>Имя</th><th>Фамилия</th><th>Телефон</th><th>Действия</th></tr>
     </thead>
     <tbody>
-        @foreach (var item in ViewBag.Data)
+        @foreach (var item in Model.contacts)
     {
         <tr>
-            <td>@item.Name</td>
-            <td>@item.Surname</td>
-            <td>@item.PhoneNumber</td>
+                <td asp-for="Name">@item.Name</td>
+                <td asp-for="Surname">@item.Surname</td>
+                <td asp-for="PhoneNumber">@item.PhoneNumber</td>
             <td>
-                <form asp-controller="Contact" asp-action="Delete" method="post" asp-route-id="@item.Id">
-                    <input type="submit" value="Удалить" />
-                </form>
+                    <form asp-controller="Contact" asp-action="Delete" method="post" asp-route-id="@item.Id">
+                        <span class="ti-brush-alt"><input type="submit" src="" value="" /></span>
+                    </form>
+                    <form asp-controller="Contact" asp-action="Edit" method="post" asp-route-id="@item.Id">
+                        <span class="ti-pencil-alt"><input type="submit" value="" /></span>
+                    </form>
             </td>
         </tr>
     }

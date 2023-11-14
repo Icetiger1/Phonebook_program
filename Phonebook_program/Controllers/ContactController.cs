@@ -8,8 +8,6 @@ namespace Phonebook_program.Controllers
     public class ContactController : Controller
     {
 
-        public List<Contact> Contacts { get; set; } = new();
-
         ApplicationDbContext context;
 
         public ContactController(ApplicationDbContext context)
@@ -17,13 +15,14 @@ namespace Phonebook_program.Controllers
             this.context = context;
         }
 
-        [HttpGet]
-        public ActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            List<Contact> Contacts = new();
-            Contacts = context.Contacts.ToList();
-            ViewBag.Data = Contacts;
-            return View(Contacts);
+            ContactViewModel model = new ContactViewModel
+            {
+                contacts = await context.Contacts.ToListAsync()
+            };
+
+            return View(model);
         }
 
         public IActionResult Add()
@@ -31,18 +30,46 @@ namespace Phonebook_program.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult AddContact(Contact con)
+        [HttpPost, DisableRequestSizeLimit]
+        public async Task<IActionResult> AddContact(Contact con)
         {
             context.Contacts.Add(con);
-            context.SaveChanges();
-            return View("Index");
+            await context.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
-        public IActionResult Details(int id)
+        [HttpPost, DisableRequestSizeLimit]
+        public async Task<IActionResult> Delete(int? id)
         {
-            ViewBag.title = "Contact Detail";
-            return View();
+            if (id != null)
+            {
+                Contact? contact = await context.Contacts.FirstOrDefaultAsync(x => x.Id == id);
+                if (contact != null)
+                {
+                    context.Contacts.Remove(contact);
+                    await context.SaveChangesAsync();
+                    return RedirectToAction("Index");
+                }
+            }
+            return NotFound();
+        }
+
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id != null)
+            {
+                Contact? contact = await context.Contacts.FirstOrDefaultAsync(x => x.Id == id);
+                if (contact != null) return View(contact);
+            }
+            return NotFound();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(Contact contact)
+        {
+            context.Contacts.Update(contact);
+            await context.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
     }
 }

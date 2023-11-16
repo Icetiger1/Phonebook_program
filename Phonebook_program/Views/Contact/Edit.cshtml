@@ -1,6 +1,7 @@
 ﻿@model Phonebook_program.Models.Contact
 
 <h2>Редактирование пользователя</h2>
+<div class="box row col-lg-12">
 <form asp-action="EditContact" method="post" asp-controller="contact" asp-route-id="@Model.Id">
     <p>
         <label asp-for="Name">Имя</label><br />
@@ -46,3 +47,4 @@
         <input type="submit" value="Сохранить" />
     </p>
 </form>
+</div>
